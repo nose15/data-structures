@@ -7,18 +7,16 @@
 
 #include <stdio.h>
 #include <malloc.h>
+#include <node.h>
 
-struct Node* newNode(int);
-int getSizeOfList(struct Node * A);
+struct LinkedList {
+	struct Node* head;
+};
 
-struct Node* lastNodeOfList(struct Node* A);
-struct Node* getAtIndex(struct Node* A, int idx);
-
-void addToList(struct Node* A, int val);
-struct Node* insertToList(struct Node* A, int val, int index);
-
-struct Node* removeAtIndex(struct Node* A, int index);
-
-void printList(struct Node* A);
+struct LinkedList* newLinkedList();
+int getSizeOfList(struct LinkedList * A);
+void addToList(struct LinkedList* A, int val);
+void insertToList(struct LinkedList* A, int val, int index);
+void removeAtIndex(struct LinkedList* A, int index);
 
 #endif //LISTS_LINKED_LIST_H

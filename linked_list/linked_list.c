@@ -1,90 +1,64 @@
 //
 // Created by lukol on 16.02.2025.
 //
-#include "linked_list.h"
+#include <linked_list.h>
 
-struct Node {
-	int value;
-	struct Node* next;
-};
-
-struct Node* newNode(int val) {
-	struct Node* temp = (struct Node *) malloc(sizeof(struct Node));
-	temp->value = val;
-	temp->next = NULL;
+struct LinkedList* newLinkedList() {
+	struct LinkedList* temp = (struct LinkedList*) malloc(sizeof(struct LinkedList));
+	temp->head = NULL;
 	return temp;
 }
 
-int getSizeOfList(struct Node* A) {
+int getSizeOfList(struct LinkedList* A) {
 	int count = 0;
-	while (A != NULL) {
+	struct Node* current = A->head;
+
+	while (current != NULL) {
 		count++;
-		A = A->next;
+		current = current->next;
 	}
 	return count;
 }
 
-void addToList(struct Node* A, int val) {
-	struct Node* temp = newNode(val);
-	struct Node* last = lastNodeOfList(A);
-	last->next = temp;
+void addToList(struct LinkedList* A, int val) {
+	if (A->head == NULL) {
+		A->head = newNode(val);
+	} else {
+		struct Node* temp = newNode(val);
+		struct Node* last = traverseToLast(A->head);
+		last->next = temp;
+	}
 }
 
-struct Node* insertToList(struct Node* A, int val, int index) {
+void insertToList(struct LinkedList* A, int val, int index) {
 	struct Node* temp = newNode(val);
 
 	if (index == 0) {
-		temp->next = A;
-		return temp;
-	}
+		temp->next = A->head;
+		A->head = temp;
+	} else {
+		struct Node* prev = traverseByOffset(A->head, index - 1);
+		if (prev == NULL || prev->next == NULL) return;
 
-	struct Node* prev = getAtIndex(A, index - 1);
-	temp->next = prev->next;
-	prev->next = temp;
+		temp->next = prev->next;
+		prev->next = temp;
+	}
 }
 
-struct Node* removeAtIndex(struct Node* A, int index) {
+void removeAtIndex(struct LinkedList* A, int index) {
 	if (index == 0) {
-		struct Node* newLink = A->next;
-		free(A);
-		return newLink;
+		struct Node* newLink = A->head->next;
+		free(A->head);
+		A->head = newLink;
+	} else {
+		struct Node* temp = traverseByOffset(A->head, index - 1);
+
+		if (temp == NULL || temp->next == NULL) return;
+
+		struct Node* toDelete = temp->next;
+		struct Node* newLink = toDelete->next;
+
+		free(toDelete);
+		temp->next = newLink;
 	}
-
-	struct Node* temp = getAtIndex(A, index - 1);
-
-	if (temp == NULL || temp->next == NULL) return A;
-
-	struct Node* toDelete = temp->next;
-	struct Node* newLink = toDelete->next;
-
-	free(toDelete);
-	temp->next = newLink;
-
-	return A;
-}
-
-struct Node* lastNodeOfList(struct Node* A) {
-	while (A->next != NULL) {
-		A = A->next;
-	}
-	return A;
-}
-
-struct Node* getAtIndex(struct Node* A, int idx) {
-	for (int i = 0; i < idx; i++) {
-		A = A->next;
-
-		if (A == NULL) {
-			return NULL;
-		}
-	}
-	return A;
-}
-
-void printList(struct Node* A) {
-	while (A != NULL) {
-		printf("%d ", A->value);
-		A = A->next;
-	}
-	printf("\n");
 }

@@ -1,13 +1,34 @@
 #include <linked_list.h>
 
 int main() {
-	struct Node* A = newNode(1);
-	addToList(A, 2);
-	addToList(A, 3);
-	addToList(A, 4);
-	A = insertToList(A, 5, 1);
-	A = insertToList(A, 8, 0);
-	printList(A);
-	A = removeAtIndex(A, 0);
-	printList(A);
+	struct LinkedList* list = newLinkedList();
+	addToList(list, 1);
+	printList(list->head);
+
+	addToList(list, 2);
+	printList(list->head);
+
+	addToList(list, 3);
+	printList(list->head);
+
+	insertToList(list, 6, 0);
+	printList(list->head);
+
+	addToList(list, 5);
+	printList(list->head);
+
+	insertToList(list, 7, 3);
+	printList(list->head);
+
+	insertToList(list, 8, 12);
+	printList(list->head);
+
+	removeAtIndex(list, 0);
+	printList(list->head);
+
+	removeAtIndex(list, 3);
+	printList(list->head);
+
+	removeAtIndex(list, 12);
+	printList(list->head);
 }
