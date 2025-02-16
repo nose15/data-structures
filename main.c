@@ -7,4 +7,6 @@ int main() {
 	addToList(A, 4);
 	insertToList(A, 5, 1);
 	printList(A);
+	A = removeAtIndex(A, 0);
+	printList(A);
 }

@@ -15,9 +15,18 @@ struct Node* newNode(int val) {
 	return temp;
 }
 
+int getSizeOfList(struct Node* A) {
+	int count = 0;
+	while (A != NULL) {
+		count++;
+		A = A->next;
+	}
+	return count;
+}
+
 void addToList(struct Node* A, int val) {
 	struct Node* temp = newNode(val);
-	struct Node* last = lastNodeOf(A);
+	struct Node* last = lastNodeOfList(A);
 	last->next = temp;
 }
 
@@ -33,7 +42,27 @@ void insertToList(struct Node* A, int val, int index) {
 	prev->next = temp;
 }
 
-struct Node* lastNodeOf(struct Node* A) {
+struct Node* removeAtIndex(struct Node* A, int index) {
+	if (index == 0) {
+		struct Node* newLink = A->next;
+		free(A);
+		return newLink;
+	}
+
+	struct Node* temp = getAtIndex(A, index - 1);
+
+	if (temp == NULL || temp->next == NULL) return A;
+
+	struct Node* toDelete = temp->next;
+	struct Node* newLink = toDelete->next;
+
+	free(toDelete);
+	temp->next = newLink;
+
+	return A;
+}
+
+struct Node* lastNodeOfList(struct Node* A) {
 	while (A->next != NULL) {
 		A = A->next;
 	}
