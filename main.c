@@ -5,7 +5,8 @@ int main() {
 	addToList(A, 2);
 	addToList(A, 3);
 	addToList(A, 4);
-	insertToList(A, 5, 1);
+	A = insertToList(A, 5, 1);
+	A = insertToList(A, 8, 0);
 	printList(A);
 	A = removeAtIndex(A, 0);
 	printList(A);

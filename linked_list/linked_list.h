@@ -15,7 +15,7 @@ struct Node* lastNodeOfList(struct Node* A);
 struct Node* getAtIndex(struct Node* A, int idx);
 
 void addToList(struct Node* A, int val);
-void insertToList(struct Node* A, int val, int index);
+struct Node* insertToList(struct Node* A, int val, int index);
 
 struct Node* removeAtIndex(struct Node* A, int index);
 

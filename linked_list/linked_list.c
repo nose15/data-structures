@@ -30,14 +30,15 @@ void addToList(struct Node* A, int val) {
 	last->next = temp;
 }
 
-void insertToList(struct Node* A, int val, int index) {
+struct Node* insertToList(struct Node* A, int val, int index) {
 	struct Node* temp = newNode(val);
-	struct Node* prev = getAtIndex(A, index - 1);
 
-	if (prev == NULL) {
-		return;
+	if (index == 0) {
+		temp->next = A;
+		return temp;
 	}
 
+	struct Node* prev = getAtIndex(A, index - 1);
 	temp->next = prev->next;
 	prev->next = temp;
 }
