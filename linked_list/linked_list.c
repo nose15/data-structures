@@ -62,3 +62,18 @@ void removeAtIndex(struct LinkedList* A, int index) {
 		temp->next = newLink;
 	}
 }
+
+void reverseIter(struct LinkedList* target) {
+	struct Node* prev = NULL;
+	struct Node* current = target->head;
+	struct Node* next;
+
+	while (current != NULL) {
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+	}
+
+	target->head = prev;
+}

@@ -18,5 +18,6 @@ int getSizeOfList(struct LinkedList * A);
 void addToList(struct LinkedList* A, int val);
 void insertToList(struct LinkedList* A, int val, int index);
 void removeAtIndex(struct LinkedList* A, int index);
+void reverseIter(struct LinkedList* target);
 
 #endif //LISTS_LINKED_LIST_H
