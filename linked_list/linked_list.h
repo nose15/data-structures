@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <node.h>
+#include <stdbool.h>
 
 struct LinkedList {
 	struct Node* head;
@@ -20,6 +21,6 @@ void insertToList(struct LinkedList* A, int val, int index);
 void removeAtIndex(struct LinkedList* A, int index);
 void reverseIter(struct LinkedList* target);
 void reverseRec(struct LinkedList* target);
-struct Node* reverseNodesRec(struct Node* target, struct Node* newLink);
+void printRec(struct LinkedList* target, bool reverse);
 
 #endif //LISTS_LINKED_LIST_H

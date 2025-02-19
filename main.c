@@ -33,4 +33,7 @@ int main() {
 
 	reverseRec(list);
 	printList(list->head);
+
+	printRec(list, true);
+	printRec(list, false);
 }

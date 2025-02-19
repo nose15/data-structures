@@ -3,6 +3,10 @@
 //
 #include <linked_list.h>
 
+void printNodesRec(struct Node* current);
+void printNodesReversedRec(struct Node* current);
+struct Node* reverseNodesRec(struct Node* first, struct Node* newLink);
+
 struct LinkedList* newLinkedList() {
 	struct LinkedList* temp = (struct LinkedList*) malloc(sizeof(struct LinkedList));
 	temp->head = NULL;
@@ -82,17 +86,42 @@ void reverseRec(struct LinkedList* target) {
 	target->head = reverseNodesRec(target->head, NULL);
 }
 
-struct Node* reverseNodesRec(struct Node* target, struct Node* newLink) {
-	if (target == NULL) {
+void printRec(struct LinkedList* target, bool reverse) {
+	if (reverse) {
+		printNodesReversedRec(target->head);
+	} else {
+		printNodesRec(target->head);
+	}
+	printf("\n");
+}
+
+struct Node* reverseNodesRec(struct Node* first, struct Node* newLink) {
+	if (first == NULL) {
 		return NULL;
 	}
 
-	if (target->next == NULL) {
-		target->next = newLink;
-		return target;
+	if (first->next == NULL) {
+		first->next = newLink;
+		return first;
 	}
 
-	struct Node* next = target->next;
-	target->next = newLink;
-	return reverseNodesRec(next, target);
+	struct Node* next = first->next;
+	first->next = newLink;
+	return reverseNodesRec(next, first);
+}
+
+void printNodesRec(struct Node* current) {
+	if (current == NULL) {
+		return;
+	}
+	printf("%d ", current->value);
+	printNodesRec(current->next);
+}
+
+void printNodesReversedRec(struct Node* current) {
+	if (current == NULL) {
+		return;
+	}
+	printNodesReversedRec(current->next);
+	printf("%d ", current->value);
 }
