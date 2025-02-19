@@ -19,5 +19,7 @@ void addToList(struct LinkedList* A, int val);
 void insertToList(struct LinkedList* A, int val, int index);
 void removeAtIndex(struct LinkedList* A, int index);
 void reverseIter(struct LinkedList* target);
+void reverseRec(struct LinkedList* target);
+struct Node* reverseNodesRec(struct Node* target, struct Node* newLink);
 
 #endif //LISTS_LINKED_LIST_H

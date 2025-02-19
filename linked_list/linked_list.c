@@ -77,3 +77,22 @@ void reverseIter(struct LinkedList* target) {
 
 	target->head = prev;
 }
+
+void reverseRec(struct LinkedList* target) {
+	target->head = reverseNodesRec(target->head, NULL);
+}
+
+struct Node* reverseNodesRec(struct Node* target, struct Node* newLink) {
+	if (target == NULL) {
+		return NULL;
+	}
+
+	if (target->next == NULL) {
+		target->next = newLink;
+		return target;
+	}
+
+	struct Node* next = target->next;
+	target->next = newLink;
+	return reverseNodesRec(next, target);
+}
