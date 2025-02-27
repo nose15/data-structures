@@ -1,6 +1,7 @@
 #include <linked_list.h>
+#include <array_list.h>
 
-int main() {
+void linkedListDemo() {
 	struct LinkedList* list = newLinkedList();
 	reverseIter(list);
 	reverseIter(list);
@@ -36,4 +37,44 @@ int main() {
 
 	printRec(list, true);
 	printRec(list, false);
+}
+
+void arrayListDemo() {
+	struct ArrayList* arrayList = newArrayList();
+	removeAt(arrayList, 1);
+	insert(arrayList, 2, 7);
+	insert(arrayList, 0, 6);
+	print(arrayList);
+
+	add(arrayList, 10);
+	add(arrayList, 4);
+	add(arrayList, 1);
+	add(arrayList, 5);
+	print(arrayList);
+
+	insert(arrayList, 2, 7);
+	insert(arrayList, 2, 3);
+	print(arrayList);
+
+	removeAt(arrayList, 1);
+	removeAt(arrayList, 5);
+	removeAt(arrayList, 0);
+	print(arrayList);
+
+	set(arrayList, 2, 9);
+	set(arrayList, 0, 0);
+	add(arrayList, 5);
+	add(arrayList, 5);
+	add(arrayList, 5);
+	add(arrayList, 5);
+	add(arrayList, 5);
+	add(arrayList, 5);
+	print(arrayList);
+
+	add(arrayList, 5);
+	print(arrayList);
+}
+
+int main() {
+	arrayListDemo();
 }
